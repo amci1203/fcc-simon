@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simon</title>
+    <meta name="theme-color" content="#C30130" />
+    <!--  build:css assets/css/styles.css  -->
+    <link rel='stylesheet' href='styles.css' type='text/css' />
+    <!--  endbuild  -->
+</head>
+<body>
+
+    <main class='wrapper'>
+        <div id="simon">
+
+            <div class="center">
+                <span id="count">0</span>
+            </div>
+
+            <div class="buttons">
+                <div id='green' class="quart-circle top left"></div>
+                <div id='red' class="quart-circle top right"></div>
+                <div id='yellow' class="quart-circle bottom left"></div>
+                <div id='blue' class="quart-circle bottom right"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="btn-group">
+        <button id="strict-toggle">STRICT</button>
+        <button id="toggle-game">PLAY</button>
+        <button id="restart-game">RESTART</button>
+    </div>
+    
+    <section id='win'>
+        <div class="wrapper">
+            <h1 class="title">YOU WIN!!!</h1>
+            <button id='win-replay'>REPLAY</button>
+        </div>
+    </section>
+
+    <audio id="red-beep"><source src="assets/beeps/1.mp3" type="audio/mpeg" /></audio>
+    <audio id="blue-beep"><source src="assets/beeps/2.mp3" type="audio/mpeg" /></audio>
+    <audio id="yellow-beep"><source src="assets/beeps/3.mp3" type="audio/mpeg" /></audio>
+    <audio id="green-beep"><source src="assets/beeps/4.mp3" type="audio/mpeg" /></audio>
+
+    <!--  build:js assets/js/app.js -->
+    <script src='app.js'></script>
+    <!--      endbuild -->
+</body>
+</html>

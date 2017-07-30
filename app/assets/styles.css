@@ -1,0 +1,227 @@
+* { box-sizing: border-box }
+
+@define-mixin atMedium {
+    @media (min-width: 800px) { @mixin-content }
+}
+
+@define-mixin isSmall {
+    @media (max-width: 800px) { @mixin-content }
+
+}
+
+$bg: #DDD;
+$fg: #222;
+
+$simonS: 18rem;
+$center-color: #111111;
+
+body {
+    margin: 0;
+    background: $bg;
+    color: $fg;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    position: relative;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.title {
+    font-weight: 100;
+    font-size: 2.65rem;
+    @mixin atMedium {
+        font-size: 4.35rem;
+    }
+}
+
+#simon {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 80px;
+
+    height: $simonS;
+    width: $simonS;
+
+    @mixin atMedium {
+        transform: scale(1.5);
+        transform-origin: top;
+    }
+
+    .buttons {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        & > * { position: absolute }
+
+        $outline: 12px;
+
+        .top    {
+            top: 0;
+            border-top: $outline solid $center-color;
+        }
+        .bottom {
+            top: 50%;
+            border-bottom: $outline solid $center-color;
+        }
+        .left   {
+            left: 0;
+            border-left: $outline solid $center-color;
+        }
+        .right  {
+            left: 50%;
+            border-right: $outline solid $center-color;
+        }
+        
+        .top.left     { border-top-left-radius     : 100% }
+        .top.right    { border-top-right-radius    : 100% }
+        .bottom.right { border-bottom-right-radius : 100% }
+        .bottom.left  { border-bottom-left-radius  : 100% }
+    }
+
+    .center {
+
+        position: absolute;
+        z-index: 100;
+        border-radius: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc($simonS / 2);
+        height: calc($simonS / 2);
+        background: $center-color;
+
+    }
+
+    #count {
+        font-size: calc($simonS / 2 - 50px);
+        line-height: calc($simonS / 2);
+        display: block;
+        height: 100%;
+        width: 100%;
+        margin: auto 0;
+        text-align: center;
+        font-family: monospace;
+        color: #EEE;
+    }
+
+}
+
+.quart-circle {
+    width: calc($simonS / 2);
+    height: calc($simonS / 2 + 1px);
+    border: 5px solid $center-color;
+
+    &#yellow { background: yellow }
+    &#red    { background: red   }
+    &#blue   { background: blue   }
+    &#green  { background: green  }
+
+    &:hover { cursor: pointer }
+    &.selected { background: $center-color !important }
+
+}
+
+.btn-group {
+    @mixin atMedium {
+        margin-top: calc($simonS / 1.6);
+    }
+}
+
+button {
+    border: none;
+    color: #FFF;
+    background: #9C1211;
+    
+    &:hover {
+        cursor: pointer;
+        background: color(#9C1211 b(+ 20));
+    }
+
+    &#strict-toggle {
+        background: transparent;
+        text-decoration: line-through;
+        color: #777;
+        &.active {
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+        }
+    }
+    
+    @mixin isSmall {
+        position: absolute;
+        &#toggle-game {
+            bottom: 0;
+            width: 100%;
+        }
+        &#restart-game {
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+        }
+        &#strict-toggle {
+            bottom: 120px;
+            width: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+    }
+    @mixin atMedium {
+        display: block;
+        padding-left: 25px;
+        padding-right: 25px;
+        margin: 0 auto;
+        margin-top: 3rem;
+        height: 60px;
+        font-size: 2.65rem;
+        
+        &#strict-toggle {
+            clear: both;
+            margin: 10px auto;
+        }
+        
+        &#restart-game, &#toggle-game {
+            float: left;
+            width: 40%;
+            margin: 20px 5%;
+        }
+    }
+
+    height: 40px;
+    font-size: 1.75rem;
+}
+
+#win {
+    position: absolute;
+    z-index: 500;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: color(green a(0.95) b(+ 25));
+    color: #FFF;
+    
+    transition: all 1.5s ease;
+    margin-top: -9999px;
+    &.active {
+        margin-top: 0;
+    }
+    
+    .wrapper {
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+    
+    button {
+        background: #FFF;
+        color: green;
+        position: relative;
+        transform: scale(1.8);
+    }
+}
